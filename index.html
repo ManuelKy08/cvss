@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CVSS 3.1 &middot; Severity &amp; Bounty Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <div class="masthead__id">
+      <span class="eyebrow">CVSS v3.1 &middot; BASE METRIC GROUP</span>
+      <h1>Severity &amp; Bounty Calculator</h1>
+      <p class="masthead__desc">Set the eight base metrics to produce a CVSS vector, base score, and an indicative payout between <span class="mono">$1</span> and <span class="mono">$10,000</span>.</p>
+    </div>
+    <div class="masthead__legend" aria-hidden="true">
+      <span class="legend-item"><i class="dot dot--none"></i>None</span>
+      <span class="legend-item"><i class="dot dot--low"></i>Low</span>
+      <span class="legend-item"><i class="dot dot--medium"></i>Medium</span>
+      <span class="legend-item"><i class="dot dot--high"></i>High</span>
+      <span class="legend-item"><i class="dot dot--critical"></i>Critical</span>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+
+  <section class="panel metrics" aria-label="Base metrics">
+
+    <div class="metric-block" data-group="exploitability">
+      <h2 class="metric-block__title"><span class="metric-block__index">I</span>Exploitability</h2>
+
+      <fieldset class="metric-row" data-metric="AV">
+        <legend><span class="metric-abbr">AV</span>Attack Vector</legend>
+        <div class="segmented" role="group" aria-label="Attack Vector">
+          <button type="button" data-key="N" data-help="Exploitable across the network, no local access needed.">Network</button>
+          <button type="button" data-key="A" data-help="Attacker must be on the same physical or logical network.">Adjacent</button>
+          <button type="button" data-key="L" data-help="Requires local access — shell, session, or file-level access.">Local</button>
+          <button type="button" data-key="P" data-help="Requires physical touch or proximity to the vulnerable device.">Physical</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="metric-row" data-metric="AC">
+        <legend><span class="metric-abbr">AC</span>Attack Complexity</legend>
+        <div class="segmented" role="group" aria-label="Attack Complexity">
+          <button type="button" data-key="L" data-help="Repeatable, no special conditions needed to exploit.">Low</button>
+          <button type="button" data-key="H" data-help="Requires conditions outside the attacker's control (e.g. race, MITM setup).">High</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="metric-row" data-metric="PR">
+        <legend><span class="metric-abbr">PR</span>Privileges Required</legend>
+        <div class="segmented" role="group" aria-label="Privileges Required">
+          <button type="button" data-key="N" data-help="Attacker is unauthenticated before the attack.">None</button>
+          <button type="button" data-key="L" data-help="Attacker needs basic, low-privileged user rights.">Low</button>
+          <button type="button" data-key="H" data-help="Attacker needs significant, administrative-level rights.">High</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="metric-row" data-metric="UI">
+        <legend><span class="metric-abbr">UI</span>User Interaction</legend>
+        <div class="segmented" role="group" aria-label="User Interaction">
+          <button type="button" data-key="N" data-help="Exploitable with no action from a legitimate user.">None</button>
+          <button type="button" data-key="R" data-help="Requires a user to take an action first (click, open, install).">Required</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="metric-row" data-metric="S">
+        <legend><span class="metric-abbr">S</span>Scope</legend>
+        <div class="segmented" role="group" aria-label="Scope">
+          <button type="button" data-key="U" data-help="Impact is confined to the vulnerable component.">Unchanged</button>
+          <button type="button" data-key="C" data-help="Impact reaches beyond the vulnerable component's own authority.">Changed</button>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="metric-block" data-group="impact">
+      <h2 class="metric-block__title"><span class="metric-block__index">II</span>Impact</h2>
+
+      <fieldset class="metric-row" data-metric="C">
+        <legend><span class="metric-abbr">C</span>Confidentiality</legend>
+        <div class="segmented" role="group" aria-label="Confidentiality">
+          <button type="button" data-key="N" data-help="No loss of confidentiality within the impacted component.">None</button>
+          <button type="button" data-key="L" data-help="Some restricted information is disclosed, limited in scope.">Low</button>
+          <button type="button" data-key="H" data-help="Total loss — all protected data is exposed to the attacker.">High</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="metric-row" data-metric="I">
+        <legend><span class="metric-abbr">I</span>Integrity</legend>
+        <div class="segmented" role="group" aria-label="Integrity">
+          <button type="button" data-key="N" data-help="No loss of integrity within the impacted component.">None</button>
+          <button type="button" data-key="L" data-help="Modification of data is possible but limited and constrained.">Low</button>
+          <button type="button" data-key="H" data-help="Total loss — attacker can modify any data at will.">High</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="metric-row" data-metric="A">
+        <legend><span class="metric-abbr">A</span>Availability</legend>
+        <div class="segmented" role="group" aria-label="Availability">
+          <button type="button" data-key="N" data-help="No impact to the availability of the resource.">None</button>
+          <button type="button" data-key="L" data-help="Reduced performance or intermittent availability.">Low</button>
+          <button type="button" data-key="H" data-help="Total loss — resource is completely unavailable.">High</button>
+        </div>
+      </fieldset>
+    </div>
+
+    <p class="metric-help" id="metricHelp" aria-live="polite">Hover or select an option to see what it means.</p>
+
+  </section>
+
+  <aside class="panel readout" aria-label="Score readout">
+
+    <div class="readout__score">
+      <span class="readout__label">Base Score</span>
+      <div class="readout__number-row">
+        <span class="readout__number mono" id="scoreValue">0.0</span>
+        <span class="readout__severity" id="severityLabel">None</span>
+      </div>
+    </div>
+
+    <div class="meter" aria-hidden="true">
+      <div class="meter__track">
+        <span class="meter__zone meter__zone--none"></span>
+        <span class="meter__zone meter__zone--low"></span>
+        <span class="meter__zone meter__zone--medium"></span>
+        <span class="meter__zone meter__zone--high"></span>
+        <span class="meter__zone meter__zone--critical"></span>
+        <span class="meter__marker" id="scoreMarker"></span>
+      </div>
+      <div class="meter__ticks">
+        <span>0</span><span>4</span><span>7</span><span>9</span><span>10</span>
+      </div>
+    </div>
+
+    <div class="readout__vector">
+      <span class="readout__label">Vector String</span>
+      <div class="vector mono" id="vectorString">CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N</div>
+      <button type="button" class="copy-btn" id="copyVector">Copy vector</button>
+    </div>
+
+    <div class="readout__bounty">
+      <span class="readout__label">Indicative Bounty</span>
+      <div class="bounty-amount mono" id="bountyValue">$0</div>
+      <div class="bounty-bar" aria-hidden="true">
+        <div class="bounty-bar__track">
+          <span class="bounty-bar__marker" id="bountyMarker"></span>
+        </div>
+        <div class="bounty-bar__ticks">
+          <span>$1</span><span>$10</span><span>$100</span><span>$1K</span><span>$10K</span>
+        </div>
+      </div>
+      <p class="bounty-note">Range reflects typical tiered payouts for a program capped at $10,000 — not a formal CVSS output.</p>
+    </div>
+
+  </aside>
+
+</main>
+
+<footer class="site-footer">
+  <p>Implements the official CVSS v3.1 base equation. Built for quick triage — always confirm scoring against the full <a href="https://www.first.org/cvss/v3.1/specification-document" target="_blank" rel="noopener">FIRST.org specification</a> for formal reports.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
